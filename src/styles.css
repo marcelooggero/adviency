@@ -1,0 +1,19 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Mountains of Christmas", cursive;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("https://st3.depositphotos.com/1010735/12797/v/600/depositphotos_127978622-stock-illustration-christmas-background-with-fir-branches.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
