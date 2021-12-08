@@ -15,6 +15,10 @@ export default function App() {
   const [giftList, setGiftList] = useState(giftListArray);
 
   const addGift = (gift: IgiftName) => {
+    giftList.some(item=> item.product.toLowerCase() === gift.product.toLowerCase()) 
+    ? alert('El producto ya existe') 
+    : 
+    // setGiftList([...giftList, gift]);
     setGiftList((prevState) => {
       return [gift, ...prevState];
     });
@@ -26,10 +30,13 @@ export default function App() {
     setGiftList([]);
   }
 
+    
+  
+
   return (
     <div className="App">
       <h1>Regalos:</h1>
-      <CreateGift addGift={addGift} />
+      <CreateGift addGift={addGift}  />
       {giftList.length ? (
         <div>
           <GiftList>

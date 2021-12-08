@@ -3,7 +3,8 @@ import IgiftName from '../interfaces/giftName';
 import './CreateGift.css'
 
 interface IProps{
-    addGift: (gift: IgiftName) => void
+    addGift: (gift: IgiftName) => void,
+    // unrepeatedGifts: (gift: IgiftName) => void
 }
 
 const CreateGift = (props: IProps) => {
@@ -16,6 +17,7 @@ const CreateGift = (props: IProps) => {
     const onSubmit = (e: FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
         if(name.length > 0){
+            // props.unrepeatedGifts(name)
             props.addGift({product:name})
             setName('')
         }
