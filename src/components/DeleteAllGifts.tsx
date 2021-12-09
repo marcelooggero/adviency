@@ -12,7 +12,7 @@ const DeleteAllGifts = (props: IProps) => {
     
     return (
         <div>
-            <button className="delete_button" type="button" onClick={deleteGifts}>Borrar Todos los regalos</button>
+            <button className="deleteAll_button" type="button" onClick={deleteGifts}>Borrar Todos los regalos</button>
         </div>
     )
 }

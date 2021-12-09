@@ -1,5 +1,26 @@
+.container_item{
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
+}
+.input_gift{
+    width: 300px;
+}    
+.input_quantity{
+    float: right;
+    width: 50px;
+}
 .delete_button{
     background-color: red;
     float:right;
     color:white;
+    height: 50px;
+    width: 50px;
+}
+.deleteAll_button{
+    background-color: red;
+    float:right;
+    color:white;
+    height: 50px;
+    width: 150px;    
 }

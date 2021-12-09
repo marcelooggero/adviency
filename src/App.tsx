@@ -8,18 +8,16 @@ import "./styles.css";
 
 export default function App() {
   const giftListArray: IgiftName[] = [
-    { product: "Cerveza" },
-    { product: "Sidra" },
-    { product: "Champagne" },
+    { product: "Cerveza", quantity:1 },
+    { product: "Sidra", quantity:1 },
+    { product: "Champagne", quantity:1 },
   ];
   const [giftList, setGiftList] = useState(giftListArray);
 
   const addGift = (gift: IgiftName) => {
     giftList.some(item=> item.product.toLowerCase() === gift.product.toLowerCase()) 
     ? alert('El producto ya existe') 
-    : 
-    // setGiftList([...giftList, gift]);
-    setGiftList((prevState) => {
+    : setGiftList((prevState) => {
       return [gift, ...prevState];
     });
   };
@@ -45,6 +43,7 @@ export default function App() {
                 deleteGift={deleteGift}
                 key={gift.product}
                 text={gift.product}
+                quantity={gift.quantity}
               />
             ))}
           </GiftList>

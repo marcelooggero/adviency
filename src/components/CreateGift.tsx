@@ -9,24 +9,27 @@ interface IProps{
 
 const CreateGift = (props: IProps) => {
 
+    
+    const [quantity, setQuantity] = useState<string>('1')
     const [name, setName] = useState<string>('')
-
     const onChange = (e:ChangeEvent<HTMLInputElement>) =>{
         setName(e.target.value)
     }
     const onSubmit = (e: FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
         if(name.length > 0){
-            // props.unrepeatedGifts(name)
-            props.addGift({product:name})
+            props.addGift({product:name, quantity:parseInt(quantity)})
             setName('')
         }
     }
-
+    const onChangeQuantity = (e:ChangeEvent<HTMLInputElement> ) => {
+        setQuantity(e.target.value)
+    }
     
     return (
-        <form onSubmit={(e) => onSubmit(e)}>
-            <input onChange={onChange} value={name}  />
+        <form className='container_form' onSubmit={(e) => onSubmit(e)}>
+            <input className='input_gift' onChange={onChange} value={name} placeholder='Agregar Regalo?' />
+            <input className='input_quantity' type="number" placeholder='Cantidad' onChange={onChangeQuantity} value={quantity} min={1} max={50}/>
             <button className="add_button" type="submit"  id="button">Agregar </button>
         </form>
     )

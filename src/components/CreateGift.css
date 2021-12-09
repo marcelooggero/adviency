@@ -1,4 +1,21 @@
+.container_form{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 .add_button{
     background-color: blue;
     color: white;
+    height: 50px;
+    width: 50px;
+}
+.input_gift{
+    height: 50px;
+    font-size: 32px;
+    width: 300px;
+}
+.input_quantity{
+    height: 50px;
+    font-size: 32px;
+    width: 50px;
 }

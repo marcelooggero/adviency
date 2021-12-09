@@ -1,3 +1,5 @@
 export default interface IgiftName{
-    product:string
+    product:string,
+    quantity:number,
+
   }
