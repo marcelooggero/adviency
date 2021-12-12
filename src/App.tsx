@@ -69,6 +69,7 @@ export default function App() {
                 deleteGift={deleteGift}
                 key={gift.product}
                 text={gift.product}
+                image={gift.image}
                 quantity={gift.quantity}
               />
             ))}

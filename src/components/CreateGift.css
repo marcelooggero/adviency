@@ -11,8 +11,12 @@
 }
 .input_gift{
     height: 50px;
+    font-size: 25px;
+    width: 200px;
+}.input_image{
+    height: 50px;
     font-size: 32px;
-    width: 300px;
+    width: 100px;
 }
 .input_quantity{
     height: 50px;
