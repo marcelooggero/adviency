@@ -4,7 +4,7 @@ import './CreateGift.css'
 
 interface IProps{
     addGift: (gift: IgiftName) => void,
-    // unrepeatedGifts: (gift: IgiftName) => void
+    
 }
 
 const CreateGift = (props: IProps) => {

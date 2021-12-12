@@ -11,10 +11,8 @@ const GiftItem = (props:GiftItemPropsI) => {
 
     const onDelete = () =>{
         props.deleteGift({product:props.text, quantity:0});
-        // console.log("deletinggggg")
+        
     }
-
-
 
     return (
         <div className='container_item'>

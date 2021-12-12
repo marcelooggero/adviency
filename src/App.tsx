@@ -4,28 +4,54 @@ import GiftItem from "./components/GiftItem";
 import DeleteAllGifts from './components/DeleteAllGifts'
 import CreateGift from "./components/CreateGift";
 import IgiftName from "../src/interfaces/giftName";
+
 import "./styles.css";
 
 export default function App() {
-  const giftListArray: IgiftName[] = [
-    { product: "Cerveza", quantity:1 },
-    { product: "Sidra", quantity:1 },
-    { product: "Champagne", quantity:1 },
-  ];
-  const [giftList, setGiftList] = useState(giftListArray);
+  const localStorageGifts = localStorage.getItem('ADVIENCY');
+  let parsedGifts: IgiftName[];
+
+  if (!localStorageGifts) {
+    localStorage.setItem('ADVIENCY', JSON.stringify([]));
+    parsedGifts = [];
+  } else {
+    parsedGifts = JSON.parse(localStorageGifts);
+  }
+
+
+  // const giftListArray: IgiftName[] = [
+  //   { product: "Cerveza", quantity:1 },
+  //   { product: "Sidra", quantity:1 },
+  //   { product: "Champagne", quantity:1 },
+  // ];
+  const [giftList, setGiftList] = useState(parsedGifts);
+
+
+  const saveGifts = (gift: IgiftName) => {
+    setGiftList(prevState => {return [...prevState, gift]});
+    let array= giftList
+    array.push(gift)
+    localStorage.setItem('ADVIENCY', JSON.stringify(array));
+    
+  }
 
   const addGift = (gift: IgiftName) => {
-    giftList.some(item=> item.product.toLowerCase() === gift.product.toLowerCase()) 
+    giftList.some(item => item.product.toLowerCase() === gift.product.toLowerCase()) 
     ? alert('El producto ya existe') 
-    : setGiftList((prevState) => {
-      return [gift, ...prevState];
-    });
+    : saveGifts(gift);
+    
+    
   };
   const deleteGift = (gift: IgiftName) => {
     setGiftList(giftList.filter((item) => item.product !== gift.product));
+    let array = giftList.filter((item) => item.product !== gift.product);
+    localStorage.setItem('ADVIENCY', JSON.stringify(array));
+    
   };
   const deleteAllGifts = () => {
     setGiftList([]);
+    localStorage.setItem('ADVIENCY', JSON.stringify([]));
+    
   }
 
     
