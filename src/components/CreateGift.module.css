@@ -17,7 +17,13 @@
     height: 40px;
     font-size: 25px;
     width: 300px;
-}.input_image{
+}
+.input_owner{
+    height: 40px;
+    font-size: 25px;
+    width: 300px;
+}
+.input_image{
     height: 40px;
     font-size: 25px;
     width: 300px;

@@ -67,6 +67,7 @@ export default function App() {
                 key={gift.product}
                 text={gift.product}
                 image={gift.image}
+                owner={gift.owner}
                 quantity={gift.quantity}
               />
             ))}
