@@ -6,7 +6,6 @@ import CreateGift from "./components/CreateGift";
 import IgiftName from "../src/interfaces/giftName";
 import {Modal} from './Modal'
 import styles from './App.module.css'
-
 import "./styles.css";
 
 export default function App() {

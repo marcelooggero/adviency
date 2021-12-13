@@ -1,21 +1,31 @@
+.container_form{
+
+    width: 40%;
+    height: auto;
+    background-color: #207a20;
+    padding: 30px;
+    border-radius:50px
+}
 .group_text{
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
+    margin:5px
 }
 .input_gift{
-    height: 50px;
+    height: 40px;
     font-size: 25px;
     width: 300px;
 }.input_image{
-    height: 50px;
-    font-size: 32px;
+    height: 40px;
+    font-size: 25px;
     width: 300px;
+    margin:5px
 }
 .input_quantity{
-    height: 50px;
-    font-size: 32px;
+    height: 40px;
+    font-size: 25px;
     width: 300px;
 }
 .group_buttons{
