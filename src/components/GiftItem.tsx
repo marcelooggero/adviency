@@ -1,5 +1,5 @@
 import IgiftName from '../interfaces/giftName';
-import './GiftItem.css'
+import styles from './GiftItem.module.css'
 
 interface GiftItemPropsI {
     text: string,
@@ -16,11 +16,11 @@ const GiftItem = (props:GiftItemPropsI) => {
     }
 
     return (
-        <div className='container_item'>
-            <img className='input_image' src={props.image}/>
-            <span className='input_gift'>{props.text}</span>
-            <span className='input_quantity'>{props.quantity}</span>
-            <button className="delete_button" onClick={onDelete} >X</button>
+        <div className={styles.container_item}>
+            <img className={styles.input_image} src={props.image}/>
+            <span className={styles.input_gift}>{props.text}</span>
+            <span className={styles.input_quantity}>{props.quantity}</span>
+            <button className={styles.delete_button} onClick={onDelete} >X</button>
         </div>
     )
 }

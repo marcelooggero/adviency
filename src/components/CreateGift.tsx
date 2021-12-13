@@ -1,9 +1,10 @@
 import { useState, ChangeEvent, FormEvent } from 'react'
 import IgiftName from '../interfaces/giftName';
-import './CreateGift.css'
+import styles from  './CreateGift.module.css'
 
 interface IProps{
     addGift: (gift: IgiftName) => void,
+    setOpenModal: (state:boolean) => void,
     
 }
 
@@ -23,6 +24,7 @@ const CreateGift = (props: IProps) => {
             props.addGift({product:name, image: image ,quantity:parseInt(quantity)})
             setName('')
         }
+        props.setOpenModal(false)
     }
     const onChangeQuantity = (e:ChangeEvent<HTMLInputElement> ) => {
         setQuantity(e.target.value)
@@ -32,11 +34,16 @@ const CreateGift = (props: IProps) => {
     }
     
     return (
-        <form className='container_form' onSubmit={(e) => onSubmit(e)}>
-            <input className='input_gift' onChange={onChange} value={name} placeholder='Agregar Regalo?' />
-            <input className='input_image' type="url" value={image} onChange={onChangeImage}/>
-            <input className='input_quantity' type="number" placeholder='Cantidad' onChange={onChangeQuantity} value={quantity} min={1} max={50}/>
-            <button className="add_button" type="submit"  id="button">Agregar </button>
+        <form className={styles.container_form} onSubmit={(e) => onSubmit(e)}>
+            <div className={styles.group_text} >
+                <input className={styles.input_gift} onChange={onChange} value={name} placeholder='Agregar Regalo?' />
+                <input className={styles.input_image} type="url" value={image} onChange={onChangeImage}/>
+                <input className={styles.input_quantity} type="number" placeholder='Cantidad' onChange={onChangeQuantity} value={quantity} min={1} max={50}/>
+            </div>
+            <div className={styles.group_buttons}>
+                <button className={styles.cancel_button} type="submit"  id="button" onClick={()=>props.setOpenModal(false)}>Cancelar </button>
+                <button className={styles.add_button} type="submit"  id="button">Agregar </button>
+            </div>
         </form>
     )
 }

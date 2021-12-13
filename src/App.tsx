@@ -4,6 +4,8 @@ import GiftItem from "./components/GiftItem";
 import DeleteAllGifts from './components/DeleteAllGifts'
 import CreateGift from "./components/CreateGift";
 import IgiftName from "../src/interfaces/giftName";
+import {Modal} from './Modal'
+import styles from './App.module.css'
 
 import "./styles.css";
 
@@ -18,14 +20,8 @@ export default function App() {
     parsedGifts = JSON.parse(localStorageGifts);
   }
 
-
-  // const giftListArray: IgiftName[] = [
-  //   { product: "Cerveza", quantity:1 },
-  //   { product: "Sidra", quantity:1 },
-  //   { product: "Champagne", quantity:1 },
-  // ];
   const [giftList, setGiftList] = useState(parsedGifts);
-
+  const [openModal, setOpenModal]= useState(false);
 
   const saveGifts = (gift: IgiftName) => {
     setGiftList(prevState => {return [...prevState, gift]});
@@ -59,8 +55,10 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Regalos:</h1>
-      <CreateGift addGift={addGift}  />
+      <div className={styles.container}>
+        <h1 className={styles.text_title} >Regalos:</h1>
+        <button className={styles.addGift_button} onClick={()=> {setOpenModal(prevState => !prevState) }}>Agregar Regalo</button>
+      </div>
       {giftList.length ? (
         <div>
           <GiftList>
@@ -82,6 +80,12 @@ export default function App() {
           <br />
           <span>por favor agrega algo en la lista</span>
         </div>
+      )}
+      {openModal && (
+        <Modal>
+          <CreateGift addGift={addGift} setOpenModal={setOpenModal} />
+        </Modal>
+
       )}
     </div>
   );

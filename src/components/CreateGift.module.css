@@ -1,0 +1,40 @@
+.group_text{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+.input_gift{
+    height: 50px;
+    font-size: 25px;
+    width: 300px;
+}.input_image{
+    height: 50px;
+    font-size: 32px;
+    width: 300px;
+}
+.input_quantity{
+    height: 50px;
+    font-size: 32px;
+    width: 300px;
+}
+.group_buttons{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    
+}
+.add_button{
+    background-color: blue;
+    color: white;
+    height: 50px;
+    width: 50px;
+    margin-left:15px
+}
+.cancel_button{
+    background-color: red;
+    color: white;
+    height: 50px;
+    width: 50px;
+    margin-right:15px
+}

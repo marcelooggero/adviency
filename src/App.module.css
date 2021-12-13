@@ -1,0 +1,23 @@
+
+.container{
+    display: flex;
+    justify-content:center;
+    /* align-items: center; */
+    width:450px;
+
+}
+.text_title{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #000;
+    float:left;
+}
+.addGift_button{
+    background-color: blue;
+    color:white;
+    height: 50px;
+    width: 150px;    
+    align-self: center;
+    margin-left: 160px;
+    border-radius:20px
+}
