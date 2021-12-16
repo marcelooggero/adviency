@@ -1,14 +1,14 @@
 
 .container{
     display: flex;
-    justify-content:center;
-    /* align-items: center; */
-    width:450px;
+    /* justify-content:center; */
+    align-items: center;
+    width:472px;
 
 }
 .text_title{
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: bold;  
     color: #000;
     float:left;
 }
@@ -17,7 +17,15 @@
     color:white;
     height: 50px;
     width: 150px;    
-    align-self: center;
-    margin-left: 160px;
-    border-radius:20px
+    /* align-self: center; */
+    margin-left: 180px;
+    border-radius:20px;
+    
+}
+.addGift_button:hover, .addGift_button:focus{
+    -moz-transform: scale(1.1);
+-webkit-transform: scale(1.1);
+-o-transform: scale(1.1);
+-ms-transform: scale(1.1);
+transform: scale(1.1);
 }
