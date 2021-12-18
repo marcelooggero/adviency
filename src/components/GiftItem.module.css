@@ -45,6 +45,7 @@
 }
 .input_gift{
     width: 300px;
+    font-size: 25px;
 }  
 .owner_gift{
     font-size: 15px;
@@ -52,8 +53,12 @@
 }
 
 .input_quantity{
+    font-size: 25px;
     float: right;
     width: 50px;
+}
+.edit_button{
+    font-size: 25px;
 }
 .delete_button{
     background-color: red;

@@ -4,5 +4,6 @@ export default interface IgiftName{
     image: string,
     owner: string,
     quantity:number,
+    price:number,
 
   }

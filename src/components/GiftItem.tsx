@@ -9,6 +9,7 @@ interface GiftItemPropsI {
     quantity: number,
     image: string,
     owner: string,
+    price: number,
     deleteGift: (gift: IgiftName) => void,
     setEditGift: (gift: IgiftName) => void,
     giftList: IgiftName[],
@@ -18,7 +19,7 @@ interface GiftItemPropsI {
 
 const GiftItem = (props: GiftItemPropsI) => {
 
-    const onDelete = (text:string) => {
+    const onDelete = (text: string) => {
         // props.deleteGift({ id:0,product: props.text, image: '', owner: '', quantity: 0 });
         props.deleteGift(props.giftList.filter(item => item.product === text)[0])
 
@@ -38,9 +39,10 @@ const GiftItem = (props: GiftItemPropsI) => {
                 <span className={styles.input_gift}>{props.text}</span>
                 <span className={styles.owner_gift}>{props.owner}</span>
             </div>
-            <span className={styles.input_quantity}>{props.quantity}</span>
-            <FiEdit  tabIndex={props.id} className={styles.edit_button} onClick={()=>onEdit(props.text)}/>
-            <button className={styles.delete_button} onClick={()=>onDelete(props.text)} >X</button>
+            <span className={styles.input_quantity}>x {props.quantity}</span>
+            <span className={styles.input_quantity}>$ {props.quantity * props.price}</span>
+            <FiEdit tabIndex={0} className={styles.edit_button} onClick={() => onEdit(props.text)} />
+            <button className={styles.delete_button} onClick={() => onDelete(props.text)} >X</button>
         </div>
     )
 }
