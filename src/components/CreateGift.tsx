@@ -93,9 +93,10 @@ const CreateGift = (props: IProps) => {
                 <input className={styles.input_gift} onChange={onChange} value={name} placeholder='Agregar Regalo?' autoFocus />
                 <input className={styles.input_owner} onChange={onChangeOwner} value={owner} placeholder='Para quién es?' />
                 <input className={styles.input_image} onChange={onChangeImage} type="url"  value={image} />
+                
                 <label className={styles.label_quantity} htmlFor="quantity">Cantidad:</label>
-
                 <input className={styles.input_quantity} id="quantity" onChange={onChangeQuantity} type="number"  value={quantity} min={1} max={50} />
+
                 <label className={styles.label_quantity} htmlFor="price">Precio:</label>
                 <input className={styles.input_quantity} id="price" onChange={onChangePrice} type="number"  value={price} min={0} />
             </div>

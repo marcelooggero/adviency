@@ -30,3 +30,10 @@
 -ms-transform: scale(1.1);
 transform: scale(1.1);
 }
+.total{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-size: 25px;
+    
+}

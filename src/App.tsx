@@ -101,7 +101,12 @@ export default function App() {
 
   }
 
-
+  const handleTotal = () => {
+    const reducer = (accumulator:number, currentValue:IgiftName) =>
+      accumulator + currentValue.price * currentValue.quantity;
+    const sum = giftList.reduce(reducer, 0);
+    return sum;
+  };
 
 
   return (
@@ -132,6 +137,11 @@ export default function App() {
                 />
               ))}
             </GiftList>
+            {giftList.length > 0 && (
+            <div className={styles.total}>
+              <h3>{`Total: $ ${handleTotal()}`}</h3>
+            </div>
+        )}
             <DeleteAllGifts deleteAllGifts={deleteAllGifts} />
           </div>
         ) : (
