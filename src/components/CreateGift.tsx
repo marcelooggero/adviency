@@ -11,7 +11,10 @@ interface IProps {
     giftList: IgiftName[],
     setGiftList: (gift: IgiftName[]) => void,
     index: number,
-    surprise: IgiftName[]
+    surprise: IgiftName[],
+    duplicateGift: IgiftName,
+    duplicate: boolean,
+    setDuplicate: React.Dispatch<React.SetStateAction<boolean>>,
 }
 
 const CreateGift = (props: IProps) => {
@@ -24,25 +27,36 @@ const CreateGift = (props: IProps) => {
     const [price, setPrice] = useState<number>(0)
 
 
-    if (props.edit) {
+    if (props.edit || props.duplicate) {
         useEffect(() => {
-            if (props.editGift) {
+            if (props.edit) {
                 setName(props.editGift.product)
                 setOwner(props.editGift.owner)
                 setImage(props.editGift.image)
                 setQuantity(props.editGift.quantity.toString())
                 setPrice(props.editGift.price)
+                
+            } else if(props.duplicate){
+                setName(props.duplicateGift.product)
+                setOwner(props.duplicateGift.owner)
+                setImage(props.duplicateGift.image)
+                setQuantity(props.duplicateGift.quantity.toString())
+                setPrice(props.duplicateGift.price)
+                
             }
         }, [])
     }
-
+    
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
     }
+       
+
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         if (props.edit) {
+            console.log('edit')
             let gift = props.giftList.filter(item => item.id === props.editGift.id)
             const index = props.giftList.indexOf(gift[0])
             let editedGiftList = [...props.giftList.slice(0, index), {
@@ -54,14 +68,41 @@ const CreateGift = (props: IProps) => {
                 price: price
             }, ...props.giftList.slice(index + 1)]
             props.setGiftList(editedGiftList)
-            // localStorage.setItem('ADVIENCY', JSON.stringify(editedGiftList));
             props.setEdit(false)
+        }else if (props.duplicate) {
+            console.log("duplicated")
+            //crear un nuevo elemento con un nuevo id y verificar que destinatario cambió
+            let gift = props.giftList.filter(item => item.id === props.duplicateGift.id)
+          
+            //chequear que el owner es diferente
+            if(gift[0].owner != owner){
+           
+                let duplicatedGiftList = [...props.giftList, {
+                    id: props.giftList.length + 1,
+                    product: name,
+                    image: image,
+                    owner: owner,
+                    quantity: parseInt(quantity),
+                    price: price
+                }]
+                props.setGiftList(duplicatedGiftList)
+                props.setDuplicate(false)
+            }else{
+                alert("El destinatario debe ser diferente")
+            }
+
+            
+            
+            
         } else if (name.length > 0) {
+            
+            console.log("entro a crearnuevo")
             props.addGift({ id: props.giftList.length + 1, product: name, image: image, owner: owner, quantity: parseInt(quantity), price:price })
             setName('')
         }
         props.setOpenModal(false)
     }
+
     const onChangeQuantity = (e: ChangeEvent<HTMLInputElement>) => {
         setQuantity(e.target.value)
     }
@@ -101,8 +142,8 @@ const CreateGift = (props: IProps) => {
                 <input className={styles.input_quantity} id="price" onChange={onChangePrice} type="number"  value={price} min={0} />
             </div>
             <div className={styles.group_buttons}>
-                <button className={styles.cancel_button} type="button" id="button" onClick={() => { props.setOpenModal(false); props.setEdit(false) }}>Cancelar </button>
-                <button className={styles.add_button} type="submit" id="button">{props.edit ? 'Modificar' : 'Agregar'} </button>
+                <button className={styles.cancel_button} type="button" id="button" onClick={() => { props.setOpenModal(false); props.setEdit(false); props.setDuplicate(false) }}>Cancelar </button>
+                <button className={styles.add_button} type="submit" id="button">{(props.edit||props.duplicate) ? 'Modificar' : 'Agregar'} </button>
             </div>
         </form>
     )

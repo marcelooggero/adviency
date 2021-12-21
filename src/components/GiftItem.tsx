@@ -1,9 +1,11 @@
-import { FiEdit } from 'react-icons/fi';
+import { FiEdit, FiDelete } from 'react-icons/fi';
 import IgiftName from '../interfaces/giftName';
 import styles from './GiftItem.module.css'
+import { BiDuplicate } from 'react-icons/bi'
 import GiftList from './GiftList';
 
 interface GiftItemPropsI {
+    giftList: IgiftName[],
     id: number,
     text: string,
     quantity: number,
@@ -12,8 +14,9 @@ interface GiftItemPropsI {
     price: number,
     deleteGift: (gift: IgiftName) => void,
     setEditGift: (gift: IgiftName) => void,
-    giftList: IgiftName[],
     setEdit: (aaa: boolean) => void,
+    setDuplicateGift: (gift: IgiftName) => void,
+    setDuplicate: (dup: boolean) => void,
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -29,7 +32,13 @@ const GiftItem = (props: GiftItemPropsI) => {
         props.setEditGift(objeto[0])
         props.setEdit(true)
         props.setOpenModal(true)
+    }
 
+    const onDuplicate = (id: number) => {
+    let object = props.giftList.filter(item => item.id === id)
+    props.setDuplicateGift(object[0])
+    props.setDuplicate(true)
+    props.setOpenModal(true)
     }
 
     return (
@@ -41,8 +50,9 @@ const GiftItem = (props: GiftItemPropsI) => {
             </div>
             <span className={styles.input_quantity}>x {props.quantity}</span>
             <span className={styles.input_quantity}>$ {props.quantity * props.price}</span>
+            <BiDuplicate tabIndex={0} className={styles.edit_button} onClick={() => onDuplicate(props.id)} />
             <FiEdit tabIndex={0} className={styles.edit_button} onClick={() => onEdit(props.text)} />
-            <button className={styles.delete_button} onClick={() => onDelete(props.text)} >X</button>
+            <FiDelete tabIndex={0} className={styles.delete_button} onClick={() => onDelete(props.text)} ></FiDelete>
         </div>
     )
 }

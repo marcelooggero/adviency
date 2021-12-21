@@ -3,7 +3,7 @@
     display: flex;
     /* justify-content:center; */
     align-items: center;
-    width:515px;
+    width:535px;
 
 }
 .text_title{
@@ -19,11 +19,11 @@
     height: 50px;
     width: 150px;    
     /* align-self: center; */
-    margin-left: 270px;
+    margin-left: 290px;
     border-radius:20px;
     
 }
-.addGift_button:hover, .addGift_button:focus{
+.addGift_button:hover, .addGift_button:focus, .previsualize_button:hover, .previsualize_button:focus{
     -moz-transform: scale(1.1);
 -webkit-transform: scale(1.1);
 -o-transform: scale(1.1);
@@ -34,6 +34,16 @@ transform: scale(1.1);
     display: flex;
     justify-content: right;
     align-items: center;
-    font-size: 25px;
+    font-size: 25px;    
+}
+
+.previsualize_button{
+    background-color: green;
+    color:black;
+    height: 50px;
+    width: 150px;    
+    float:right;
+    margin-top: 5px;
+    border-radius:20px;
     
 }
