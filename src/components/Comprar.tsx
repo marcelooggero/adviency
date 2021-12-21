@@ -1,3 +1,4 @@
+import { BiWindows } from "react-icons/bi";
 import IgiftName from "../interfaces/giftName";
 import styles from "./Comprar.module.css";
 
@@ -10,9 +11,13 @@ interface IComprar {
 
 const Comprar = (props: IComprar) => {
 
-    const close=() => { 
-        props.setOpenModal_prev(false)
-    }
+  const close = () => {
+    props.setOpenModal_prev(false)
+  }
+  const print = () => {
+    //imprimir
+    window.print()
+  }
 
 
   if (props.giftList != undefined) {
@@ -20,7 +25,7 @@ const Comprar = (props: IComprar) => {
       <div className={styles.container_item}>
         <h1>Comprar:</h1>
         {props.giftList.map((gift) => (
-          <div className={styles.subcontainer}>
+          <div key={gift.id} className={styles.subcontainer}>
             <img className={styles.input_image} src={gift.image} />
             <div className={styles.group_gift_owner}>
               <span className={styles.input_gift}>{gift.product}</span>
@@ -29,7 +34,10 @@ const Comprar = (props: IComprar) => {
             <span className={styles.quantity}>{gift.quantity}</span>
           </div>
         ))}
-        <button className={styles.close_button} onClick={close} >Cerrar:</button>
+        <div className={styles.print_close_button_container}>
+          <button className={styles.print_button} onClick={print} >Imprimir</button>
+          <button className={styles.close_button} onClick={close} >Cerrar:</button>
+        </div>
       </div>
     );
   } else {
