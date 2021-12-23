@@ -1,9 +1,10 @@
 
 .container{
     display: flex;
-    /* justify-content:center; */
+    justify-content:space-between;
     align-items: center;
     width:535px;
+    /* position:absolute; */
 
 }
 .text_title{
@@ -12,18 +13,42 @@
     color: #000;
     float:left;
 }
+.sound_button_off{
+    font-size: 2rem;
+    background-color: white;
+    color:red;
+    height: 40px;
+    width: 40px;    
+    /* align-self: center; */
+    margin-left: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+.sound_button_on{
+    font-size: 2rem;
+    background-color: red;
+    color:white;
+    height: 40px;
+    width: 40px;    
+    /* align-self: center; */
+    /* margin-left: 100px; */
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
 
 .addGift_button{
     background-color: blue;
     color:white;
-    height: 50px;
-    width: 150px;    
+    height: 40px;
+    width: 100%;    
     /* align-self: center; */
-    margin-left: 290px;
-    border-radius:20px;
+    /* margin-left: 54px; */
+    border-radius:10px;
     
 }
-.addGift_button:hover, .addGift_button:focus, .previsualize_button:hover, .previsualize_button:focus{
+.sound_button_on:focus, .sound_button_off:focus, .sound_button_on:hover, .sound_button_off:hover, .addGift_button:hover, .addGift_button:focus, .previsualize_button:hover, .previsualize_button:focus{
     -moz-transform: scale(1.1);
 -webkit-transform: scale(1.1);
 -o-transform: scale(1.1);

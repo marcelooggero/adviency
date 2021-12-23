@@ -4,7 +4,8 @@ import GiftItem from "./components/GiftItem";
 import DeleteAllGifts from "./components/DeleteAllGifts";
 import CreateGift from "./components/CreateGift";
 import IgiftName from "../src/interfaces/giftName";
-import Comprar from './components/Comprar';
+import Comprar from "./components/Comprar";
+import { BiVolumeFull, BiVolumeMute } from "react-icons/bi";
 
 import { Modal } from "./Modal";
 import { api } from "./api";
@@ -15,7 +16,7 @@ export default function App() {
   const [giftList, setGiftList] = useState<IgiftName[]>([]);
   let parsedGifts: IgiftName[];
   parsedGifts = [];
-
+  
   const [openModal, setOpenModal] = useState(false);
   const [openModal_prev, setOpenModal_prev] = useState(false);
   const [editGift, setEditGift] = useState<IgiftName>(parsedGifts[0]);
@@ -23,6 +24,9 @@ export default function App() {
   const [duplicateGift, setDuplicateGift] = useState<IgiftName>(parsedGifts[0]);
   const [duplicate, setDuplicate] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [sound, setSound] = useState<HTMLAudioElement>();
+  const [pause, setPause] = useState(false);
+
   let index = giftList.length;
 
   const surprise: IgiftName[] = [
@@ -105,6 +109,12 @@ export default function App() {
     api.save(giftList).then(console.log).catch(console.log).catch(console.log);
   }, [giftList]);
 
+  useEffect(()=>{
+    const audio = new Audio("./Christmas.mp3");
+    audio.loop = true;
+    setSound(audio);
+  },[])
+
   const saveGifts = (gift: IgiftName) => {
     setGiftList((prevState) => {
       return [...prevState, gift];
@@ -140,24 +150,42 @@ export default function App() {
     return sum;
   };
 
-  const previsualize =() => {
-    setOpenModal_prev(true)
+  const previsualize = () => {
+    setOpenModal_prev(true);
+  };
+
+
+  const soundOnOff = () => {
+    if(pause && sound){
+      sound.pause()
+      
+    }else if(sound){
+      sound.play()  
+    }
+    setPause(pause => !pause);
   }
 
   return (
     <div className="App">
       <div className={styles.container}>
         <h1 className={styles.text_title}>Regalos:</h1>
-        <button
-          autoFocus
-          className={styles.addGift_button}
-          onClick={() => {
-            setOpenModal((prevState) => !prevState);
-          }}
-        >
-          Agregar Regalo
-        </button>
+        
+          {pause
+          ?<BiVolumeFull tabIndex={0} onClick={soundOnOff} className={styles.sound_button_on}/>
+          :<BiVolumeMute tabIndex={0} onClick={soundOnOff} className={styles.sound_button_off}/>
+          }
+        
       </div>
+
+      <button
+        autoFocus
+        className={styles.addGift_button}
+        onClick={() => {
+          setOpenModal((prevState) => !prevState);
+        }}
+      >
+        Agregar Regalo
+      </button>
       {loading ? (
         <h1>Loading...</h1>
       ) : giftList.length ? (
@@ -188,7 +216,9 @@ export default function App() {
             </div>
           )}
           <DeleteAllGifts deleteAllGifts={deleteAllGifts} />
-          <button className={styles.previsualize_button} onClick={previsualize}>Previsualizar</button>
+          <button className={styles.previsualize_button} onClick={previsualize}>
+            Previsualizar
+          </button>
         </div>
       ) : (
         <div>
@@ -218,16 +248,12 @@ export default function App() {
       {openModal_prev && (
         <Modal>
           <Comprar
-           giftList={giftList}
-           openModal_prev={openModal_prev}
-           setOpenModal_prev={setOpenModal_prev}
-           />
-            
-            
+            giftList={giftList}
+            openModal_prev={openModal_prev}
+            setOpenModal_prev={setOpenModal_prev}
+          />
         </Modal>
-      )
-
-      }
+      )}
       {/* {console.log(openModal)}
 
       {console.log(duplicate)}
