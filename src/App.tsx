@@ -16,7 +16,7 @@ export default function App() {
   const [giftList, setGiftList] = useState<IgiftName[]>([]);
   let parsedGifts: IgiftName[];
   parsedGifts = [];
-  
+
   const [openModal, setOpenModal] = useState(false);
   const [openModal_prev, setOpenModal_prev] = useState(false);
   const [editGift, setEditGift] = useState<IgiftName>(parsedGifts[0]);
@@ -109,11 +109,11 @@ export default function App() {
     api.save(giftList).then(console.log).catch(console.log).catch(console.log);
   }, [giftList]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const audio = new Audio("./Christmas.mp3");
     audio.loop = true;
     setSound(audio);
-  },[])
+  }, [])
 
   const saveGifts = (gift: IgiftName) => {
     setGiftList((prevState) => {
@@ -127,9 +127,9 @@ export default function App() {
     giftList.some(
       (item) => item.product.toLowerCase() === gift.product.toLowerCase()
     ) &&
-    giftList.some(
-      (item) => item.owner.toLowerCase() === gift.owner.toLowerCase()
-    )
+      giftList.some(
+        (item) => item.owner.toLowerCase() === gift.owner.toLowerCase()
+      )
       ? alert("Ya existe ese producto para ese destinatario")
       : saveGifts(gift);
   };
@@ -156,11 +156,11 @@ export default function App() {
 
 
   const soundOnOff = () => {
-    if(pause && sound){
+    if (pause && sound) {
       sound.pause()
-      
-    }else if(sound){
-      sound.play()  
+
+    } else if (sound) {
+      sound.play()
     }
     setPause(pause => !pause);
   }
@@ -169,12 +169,12 @@ export default function App() {
     <div className="App">
       <div className={styles.container}>
         <h1 className={styles.text_title}>Regalos:</h1>
-        
-          {pause
-          ?<BiVolumeFull tabIndex={0} onClick={soundOnOff} className={styles.sound_button_on}/>
-          :<BiVolumeMute tabIndex={0} onClick={soundOnOff} className={styles.sound_button_off}/>
-          }
-        
+
+        {pause
+          ? <BiVolumeFull tabIndex={0} onClick={soundOnOff} className={styles.sound_button_on} />
+          : <BiVolumeMute tabIndex={0} onClick={soundOnOff} className={styles.sound_button_off} />
+        }
+
       </div>
 
       <button
@@ -254,10 +254,21 @@ export default function App() {
           />
         </Modal>
       )}
-      {/* {console.log(openModal)}
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
+      <div className={styles.snowflake}>  ❆  </div>
 
-      {console.log(duplicate)}
-      {console.log(editGift)} */}
-    </div>
+    </div >
   );
 }
